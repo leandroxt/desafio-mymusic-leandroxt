@@ -1,4 +1,4 @@
-package com.handson.sqllite.config;
+package br.com.ciandt.playlist.config;
 
 import java.sql.Types;
 

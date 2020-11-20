@@ -1,13 +1,13 @@
-package com.handson.sqllite;
+package br.com.ciandt.playlist;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class PlaylistApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(PlaylistApplication.class, args);
 	}
 
 }
