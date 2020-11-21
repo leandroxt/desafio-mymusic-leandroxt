@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PlaylistRepo extends JpaRepository<Playlist, String> {
-    List<Playlist> findByUserNameIgnoreCase(String username);
+    List<Playlist> findByUsuarioNomeIgnoreCase(String username);
 }

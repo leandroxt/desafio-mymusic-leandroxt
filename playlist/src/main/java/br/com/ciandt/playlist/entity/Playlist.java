@@ -19,10 +19,10 @@ public class Playlist implements Serializable {
             joinColumns = @JoinColumn(name = "playlistid", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "musicaid", referencedColumnName = "id")
     )
-    private List<Music> playlistMusics;
+    private List<Music> playlistMusicas;
 
     @OneToOne(mappedBy = "playlist")
-    private User user;
+    private User usuario;
 
     public String getId() {
         return id;
@@ -32,19 +32,24 @@ public class Playlist implements Serializable {
         this.id = id;
     }
 
-    public List<Music> getPlaylistMusics() {
-        return playlistMusics;
+    public List<Music> getPlaylistMusicas() {
+        return playlistMusicas;
     }
 
-    public void setPlaylistMusics(List<Music> playlistMusics) {
-        this.playlistMusics = playlistMusics;
+    public void setPlaylistMusicas(List<Music> playlistMusicas) {
+        this.playlistMusicas = playlistMusicas;
     }
 
-    public User getUsers() {
-        return user;
+    public User getUsuario() {
+        return usuario;
     }
 
-    public void setUsers(User users) {
-        this.user = users;
+    public void setUsuario(User usuario) {
+        this.usuario = usuario;
+    }
+
+    public Playlist addMusic(final Music music) {
+        this.playlistMusicas.add(music);
+        return this;
     }
 }

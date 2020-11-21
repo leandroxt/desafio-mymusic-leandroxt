@@ -16,15 +16,15 @@ public class Music implements Serializable {
     private String id;
 
     @Column(name = "nome", nullable = false)
-    private String name;
+    private String nome;
 
     @JsonIgnore
-    @ManyToMany(fetch = LAZY, mappedBy = "playlistMusics")
+    @ManyToMany(fetch = LAZY, mappedBy = "playlistMusicas")
     private List<Playlist> playlists;
 
     @ManyToOne
     @JoinColumn(name = "artistaid")
-    private Artist artist;
+    private Artist artista;
 
     public String getId() {
         return id;
@@ -34,12 +34,12 @@ public class Music implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public List<Playlist> getPlaylists() {
@@ -50,11 +50,11 @@ public class Music implements Serializable {
         this.playlists = playlists;
     }
 
-    public Artist getArtist() {
-        return artist;
+    public Artist getArtista() {
+        return artista;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
+    public void setArtista(Artist artista) {
+        this.artista = artista;
     }
 }

@@ -13,11 +13,11 @@ public class Artist {
     private String id;
 
     @Column(name = "nome", nullable = false)
-    private String name;
+    private String nome;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "artist")
-    private List<Music> musics;
+    @OneToMany(mappedBy = "artista")
+    private List<Music> musicas;
 
     public String getId() {
         return id;
@@ -27,19 +27,19 @@ public class Artist {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public List<Music> getMusics() {
-        return musics;
+    public List<Music> getMusicas() {
+        return musicas;
     }
 
-    public void setMusics(List<Music> musics) {
-        this.musics = musics;
+    public void setMusicas(List<Music> musicas) {
+        this.musicas = musicas;
     }
 }

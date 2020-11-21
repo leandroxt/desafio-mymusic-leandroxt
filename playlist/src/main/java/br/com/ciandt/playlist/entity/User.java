@@ -12,7 +12,7 @@ public class User {
     private String id;
 
     @Column(name = "nome", nullable = false)
-    private String name;
+    private String nome;
 
     @JsonIgnore
     @ManyToOne
@@ -27,12 +27,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Playlist getPlaylist() {
