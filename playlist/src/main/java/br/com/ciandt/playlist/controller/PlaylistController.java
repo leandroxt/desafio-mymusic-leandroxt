@@ -4,6 +4,7 @@ import br.com.ciandt.playlist.Exceptions.NotFoundException;
 import br.com.ciandt.playlist.entity.Music;
 import br.com.ciandt.playlist.entity.Playlist;
 import br.com.ciandt.playlist.service.PlaylistService;
+import io.swagger.annotations.Api;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 @RestController
 @RequestMapping(path = "/playlists")
+@Api(value = "APIs responsible to interact with user playlist")
 public class PlaylistController {
     private static final Logger logger = LogManager.getLogger(PlaylistController.class);
 
