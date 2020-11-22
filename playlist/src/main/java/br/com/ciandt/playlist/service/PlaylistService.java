@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PlaylistService {
@@ -32,6 +31,11 @@ public class PlaylistService {
         final Music music = musicRepo.findById(paramMusic.getId())
                 .orElseThrow(() -> new NotFoundException("music_not_found"));
 
+        if (playlist.contains(music)) {
+            // playlist already have this music then no need to continue
+            return;
+        }
+
         final Playlist p = playlist
                 .addMusic(music);
 
@@ -43,6 +47,11 @@ public class PlaylistService {
                 .orElseThrow(() -> new NotFoundException("playlist_not_found"));
         final Music music = musicRepo.findById(musicId)
                 .orElseThrow(() -> new NotFoundException("music_not_found"));
+
+        if (!playlist.contains(music)) {
+            // no need to continue cause music does not exists in the list
+            return;
+        }
 
         final Playlist p = playlist
                 .removeMusic(music);

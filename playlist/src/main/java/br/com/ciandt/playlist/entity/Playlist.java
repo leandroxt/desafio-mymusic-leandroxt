@@ -57,4 +57,11 @@ public class Playlist implements Serializable {
         this.playlistMusicas.remove(music);
         return this;
     }
+
+    public boolean contains(final Music music) {
+        return this
+                .playlistMusicas
+                .stream()
+                .anyMatch(m -> m.getId().equals(music.getId()));
+    }
 }
