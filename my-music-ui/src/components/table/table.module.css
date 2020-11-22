@@ -1,0 +1,24 @@
+tbody {
+  display: block;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.song {
+  width: 50%;
+}
+
+.artist {
+  width: 40%;
+}
+
+.check {
+  width: 10%;
+}
