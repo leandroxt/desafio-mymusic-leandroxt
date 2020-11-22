@@ -27,17 +27,25 @@ public class PlaylistService {
     }
 
     public void addMusicToPlaylist(final String playlistId, final Music paramMusic) throws NotFoundException {
-        final Optional<Playlist> playlist = playlistRepo.findById(playlistId);
-        final Optional<Music> music = musicRepo.findById(paramMusic.getId());
-
-        if (!playlist.isPresent() || !music.isPresent()) {
-            logger.info("Playlist or music not found");
-            throw new NotFoundException("Playlist or music not found");
-        }
+        final Playlist playlist = playlistRepo.findById(playlistId)
+                .orElseThrow(() -> new NotFoundException("playlist_not_found"));
+        final Music music = musicRepo.findById(paramMusic.getId())
+                .orElseThrow(() -> new NotFoundException("music_not_found"));
 
         final Playlist p = playlist
-                .get()
-                .addMusic(music.get());
+                .addMusic(music);
+
+        playlistRepo.save(p);
+    }
+
+    public void removeMusicFromPlaylist(final String playlistId, final String musicId) throws NotFoundException {
+        final Playlist playlist = playlistRepo.findById(playlistId)
+                .orElseThrow(() -> new NotFoundException("playlist_not_found"));
+        final Music music = musicRepo.findById(musicId)
+                .orElseThrow(() -> new NotFoundException("music_not_found"));
+
+        final Playlist p = playlist
+                .removeMusic(music);
 
         playlistRepo.save(p);
     }

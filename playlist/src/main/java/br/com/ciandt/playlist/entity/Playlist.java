@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Table(name = "playlists")
@@ -13,7 +13,7 @@ public class Playlist implements Serializable {
     @Column(name = "id", unique = true, nullable = false)
     private String id;
 
-    @ManyToMany(fetch = EAGER)
+    @ManyToMany(fetch = LAZY)
     @JoinTable(
             name = "playlistmusicas",
             joinColumns = @JoinColumn(name = "playlistid", referencedColumnName = "id"),
@@ -50,6 +50,11 @@ public class Playlist implements Serializable {
 
     public Playlist addMusic(final Music music) {
         this.playlistMusicas.add(music);
+        return this;
+    }
+
+    public Playlist removeMusic(final Music music) {
+        this.playlistMusicas.remove(music);
         return this;
     }
 }

@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.*;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @RequestMapping(path = "/playlists")
@@ -49,6 +48,22 @@ public class PlaylistController {
 
         try {
             service.addMusicToPlaylist(playlistId, music);
+            return new ResponseEntity<>(OK);
+        } catch (NotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), BAD_REQUEST);
+        } catch (Error e) {
+            return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(method = DELETE, path = "/{playlistId}/musicas/{musicId}")
+    public ResponseEntity<?> removeMusicFromPlaylist(
+            @PathVariable("playlistId") final String playlistId,
+            @PathVariable("musicId") final String musicId
+    ) {
+        logger.info("removing music from playlist in playlistId: " + playlistId);
+        try {
+            service.removeMusicFromPlaylist(playlistId, musicId);
             return new ResponseEntity<>(OK);
         } catch (NotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), BAD_REQUEST);
