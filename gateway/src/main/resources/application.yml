@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: playlists
+          uri: 'http://localhost:8081'
+          predicates:
+            - Path=/api/playlists/**
+          filters:
+            - RewritePath=/api/playlists/(?<path>.*), /playlists/$\{path}
+        - id: musics
+          uri: 'http://localhost:8082'
+          predicates:
+            - Path=/api/musicas/**
+          filters:
+            - RewritePath=/api/musicas/(?<path>.*), /musicas/$\{path}
