@@ -1,25 +1,16 @@
 import React, { MouseEvent, ReactElement } from 'react';
 import style from './table.module.css';
 
-interface Artist {
-  id: string;
-  nome: string;
-}
-
-export interface Music {
-  id: string;
-  nome: string;
-  artista: Artist;
-}
+import { Music } from '../../types';
 
 interface Props {
   musics: Music[];
-  onCheck: (id: string) => void;
+  onCheck: (id: string, value: boolean) => void;
 }
 
 export default function Table({ musics, onCheck }: Props): ReactElement<Props> {
   function onCheckbox({ currentTarget }: MouseEvent<HTMLInputElement>): void {
-    console.log(currentTarget.checked);
+    onCheck(currentTarget.id, currentTarget.checked);
   }
 
   return (
