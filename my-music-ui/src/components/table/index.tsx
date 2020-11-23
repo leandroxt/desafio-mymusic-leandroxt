@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { MouseEvent, ReactElement } from 'react';
 import style from './table.module.css';
 
 interface Artist {
@@ -14,9 +14,14 @@ export interface Music {
 
 interface Props {
   musics: Music[];
+  onCheck: (id: string) => void;
 }
 
-export default function Table({ musics }: Props): ReactElement<Props> {
+export default function Table({ musics, onCheck }: Props): ReactElement<Props> {
+  function onCheckbox({ currentTarget }: MouseEvent<HTMLInputElement>): void {
+    console.log(currentTarget.checked);
+  }
+
   return (
     <table className="table table-striped">
       <thead>
@@ -33,11 +38,23 @@ export default function Table({ musics }: Props): ReactElement<Props> {
             <td className={style.artist}>{music.artista.nome}</td>
             <td className={style.check}>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+                <input
+                  id={music.id}
+                  className="form-check-input"
+                  type="checkbox"
+                  onClick={onCheckbox}
+                />
               </div>
             </td>
           </tr>
         ))}
+        {musics.length === 0 && (
+          <tr>
+            <td colSpan={3}>
+              <span className="badge badge-pill badge-info d-flex justify-content-center">Não há músicas</span>
+            </td>
+          </tr>
+        )}
       </tbody>
     </table>
   )
