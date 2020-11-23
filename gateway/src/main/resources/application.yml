@@ -10,10 +10,10 @@ spring:
           '[/**]':
             allowedOrigins: "http://localhost:3000"
             allowedMethods:
-            - GET
-            - POST
-            - PUT
-            - DELETE
+              - GET
+              - POST
+              - PUT
+              - DELETE
       routes:
         - id: playlists
           uri: 'http://localhost:8081'
